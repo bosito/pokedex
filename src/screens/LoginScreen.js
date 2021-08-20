@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router';
+import { useAuth } from '../core/context/AuthProvider';
 
 import Loading from '../components/Loading';
 
 //styles..
 import '../style/indexStyles.scss';
-import '../style/home.scss';
 import titlePokemon from '../style/images/titleProyect.png';
 import caminata from '../style/images/caminata.gif';
 import saludoPikachu from '../style/images/saludoPikachu.png';
@@ -13,13 +13,37 @@ import charizard from '../style/images/charizard.png';
 
 export default function Home() {
 
-    const [loading, setloading] = useState(true);
+    const [loading, setloading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [inputUser, setInputUser] = useState("");
+    const history = useHistory();
+    const location = useLocation();
+    const auth = useAuth();
 
     useEffect(() => {
         setTimeout(() => {
             setloading(false);
         }, 5000);
     }, []);
+
+    const loginForm = () => {
+
+        const { from } = location.state || { from: { pathname: "/" } };
+
+        if (inputUser) {
+
+            localStorage.setItem('trainerName', inputUser );
+
+            auth.signIn(() => history.replace(from));
+
+            setMessage("");
+
+        } else {
+
+            setMessage("The field is required");
+        };
+
+    };
 
     return (
         <div className="homePage" >
@@ -32,17 +56,32 @@ export default function Home() {
                             <img
                                 src={titlePokemon}
                                 alt="titlePokemon"
-                                className="titleImage"
+                                className="imageStyle"
                             />
+                            <div className="glassConten" >
+                                <p className="textInput" >
+                                    Pokemon Trainer Name
+                                </p>
+                                <input
+                                    trype="text"
+                                    className="inputLogin"
+                                    placeholder="Name Trainer: Ash ketchum"
+                                    value={inputUser}
+                                    onChange={(e) => setInputUser(e.target.value)}
+                                />
 
-                            <p className="textInput  textInfo">
-                                Discover everything and all the pokemons that exist as well as their information and data about all of them.
-                            </p>
+                                <button className="singIn" onClick={loginForm} >
+                                    SING IN
+                                </button>
 
-                            <Link className="singIn  linkStyle" to="/protected" >
-                                <p>GO</p>
-                            </Link>
-                        
+                                {
+                                    message && 
+                                    <p className="textInput" style={{ color:"red", marginTop: 20, textAlign: 'center' }}>
+                                        {message}
+                                        </p>
+                                }
+
+                            </div>
                         </div>
                         <PokemonSludo
                             className="saludoImg"
