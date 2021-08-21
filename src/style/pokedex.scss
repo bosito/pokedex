@@ -1,0 +1,70 @@
+@use 'frecuent';
+
+.PokeContainer{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 90%;
+    //background-color: frecuent.$colorPokeder;
+    border-radius: 20px;
+    z-index: 3;
+    animation: openPokedex 1s ease 0s 1 normal forwards;
+}
+
+.PokeContainerSecond{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 95%;
+    //background-color: frecuent.$colorPokeder;
+    border-radius: 50px;
+background: #b40421;
+box-shadow:  8px 8px 16px #a7041f,
+             -8px -8px 16px #c10423;
+}
+
+@keyframes openPokedex {
+    0% {
+      transform: scale(0);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+}
+
+.pokedexLefth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: frecuent.$colorPokeder;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 70%;
+    height: 100%;
+}
+
+.pokedexRight{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    width: 30%;
+    height: 100%;
+}
+
+.adornoInclinacion{
+    width: 86.4%;
+    height: 0   px;
+    background-color: transparent;
+    border-bottom: 50px solid frecuent.$colorPokeder;
+    border-right: 50px solid transparent;
+}
+
+.pokedexRightContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: frecuent.$colorPokeder;
+}
