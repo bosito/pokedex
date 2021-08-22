@@ -1,26 +1,18 @@
 @use 'frecuent';
 
-.PokeContainer{
+@mixin flexClasic( $direccion: column, $width: 0px, $height: 0px, $justify: none, $algItems: none ) {
     display: flex;
-    flex-direction: row;
-    width: 95%;
-    height: 90%;
-    //background-color: frecuent.$colorPokeder;
-    border-radius: 20px;
-    z-index: 3;
-    animation: openPokedex 1s ease 0s 1 normal forwards;
+    flex-direction: $direccion;
+    justify-content: $justify;
+    align-items: $algItems;
+    width: $width;
+    height: $height;
 }
 
-.PokeContainerSecond{
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    height: 95%;
-    //background-color: frecuent.$colorPokeder;
-    border-radius: 50px;
-background: #b40421;
-box-shadow:  8px 8px 16px #a7041f,
-             -8px -8px 16px #c10423;
+.PokeContainer{
+    @include flexClasic( $direccion: row, $width: 95%, $height: 90% );
+    z-index: 3;
+    animation: openPokedex 1s ease 0s 1 normal forwards;
 }
 
 @keyframes openPokedex {
@@ -33,38 +25,108 @@ box-shadow:  8px 8px 16px #a7041f,
     }
 }
 
+.PokeContainerSecond{
+    @include flexClasic( $direccion: column, $width: 95%, $height: 95% );
+    border-radius: 50px;
+    background: #b40421;
+    box-shadow:  8px 8px 16px #a7041f, -8px -8px 16px #c10423;
+}
+
 .pokedexLefth{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexClasic( $width: 70%, $height: 100%, $justify: center, $algItems: center );
     background-color: frecuent.$colorPokeder;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    width: 70%;
-    height: 100%;
+    border: {
+        top-left-radius: 50px;
+        bottom-left-radius: 50px;
+        top-right-radius: 15px;
+        bottom-right-radius: 15px;
+    };
 }
 
 .pokedexRight{
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    width: 30%;
-    height: 100%;
+    @include flexClasic( $width: 30%, $height: 100% );
 }
 
 .adornoInclinacion{
-    width: 86.4%;
-    height: 0   px;
+    @include flexClasic( $width: 86.4%, $height: 0px );
     background-color: transparent;
-    border-bottom: 50px solid frecuent.$colorPokeder;
-    border-right: 50px solid transparent;
+    border: {
+        bottom: 50px solid frecuent.$colorPokeder;
+        right: 50px solid transparent;
+    };
 }
 
 .pokedexRightContainer{
-    display: flex;
-    width: 100%;
-    height: 100%;
+    @include flexClasic( $width: 100%, $height: 100% );
     background-color: frecuent.$colorPokeder;
+}
+
+.headerPekedex{
+    @include flexClasic( $direccion: row, $width: 100%, $height: 80px );
+    margin-top: 10px;
+    margin-left: 10px;
+    //padding-left: 10px;
+    //background-color: chocolate;
+}
+
+.contSircleBig{
+    @include flexClasic( $direccion: row, $width: 80px, $height: 80px );
+}
+
+.sircleBig{
+    @include flexClasic( $direccion: row, $width: 80px, $height: 80px );
+    background: linear-gradient(27deg, #0cebc6 0%, #fff 100%);
+    border: {
+        radius: 50px;
+        width: 1px;
+        color: rgb(255, 255, 255);
+    };
+}
+
+.contenSircle{
+    @include flexClasic( $direccion: row, $width: 100%, $height: 40px );
+}
+
+.sircle{
+    @include flexClasic( $direccion: row, $width: 40px, $height: 40px );
+    background: linear-gradient(27deg, #ff0000 0%, #cabcbc 100%);
+    margin-left: 5px;
+    border-radius: 50px;
+}
+
+.contenSwiper{
+    @include flexClasic( $direccion: column, $width: 100%, $height: 125px, $algItems: center );
+    margin-top: -30px;
+    background-color: transparent;
+}
+
+.centerSwiper{
+    @include flexClasic( $direccion: row, $width: 70%, $height: 100%, );
+    background-color: transparent;
+}
+
+.contenDisplay{
+    @include flexClasic( $direccion: column, $width: 100%, $height: 100%, );
+    background-color: violet;
+    //margin: 20px;
+}
+
+.pagination{
+    @include flexClasic( $direccion: column, $width: 100%, $height: 15%, );
+    background-color: yellow;
+}
+
+.controlDisplay{
+    @include flexClasic( $direccion: row, $width: 100%, $height: 85%, );
+    background-color: yellowgreen;
+}
+
+.displayLefth{
+    @include flexClasic( $direccion: row, $width: 10%, $height: 100%, $justify: center, $algItems: center );
+    background-color: tomato;
+}
+
+.display{
+    @include flexClasic( $direccion: row, $width: 80%, $height: 100%, );
+    background-color: thistle;
 }
