@@ -41,13 +41,15 @@ export const spritesPkemons = (listPokeInfo) => {
     const arrayImage = listPokeInfo.map((info) => {
         //console.log(info.sprites.versions["generation-v"]["black-white"].animated);
         //console.log(info.types[0].type.name);
+        //console.log('wolas ->',info.forms[0].name);
 
         const data = {
+            name: info.forms[0].name,
             sprites: info.sprites.versions["generation-v"]["black-white"].animated,
             types : info.types
         }; 
 
-        return info.sprites.versions["generation-v"]["black-white"].animated
+        return data
     });
 
     return arrayImage;

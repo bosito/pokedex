@@ -28,7 +28,7 @@ export default function Pokedex(props) {
 
     if (listPokeInfo) {
       const arrayImage = spritesPkemons(listPokeInfo);
-      console.log(arrayImage);
+      //console.log(arrayImage);
       setListSprites(arrayImage);
     };
 
@@ -45,15 +45,15 @@ export default function Pokedex(props) {
             <div className="centerSwiper">
               <Swiper
                 slidesPerGroup={3}
-                spaceBetween={30}
+                spaceBetween={20}
                 slidesPerView={3}
                 //virtual
                 loop={true}
                 loopFillGroupWithBlank={true}
                 grabCursor={true}
                 centeredSlides={true}
-              //onSlideChange={() => console.log('slide change')}
-              //onSwiper={(swiper) => console.log(swiper)}
+                //onSlideChange={() => console.log('slide change')}
+                //onSwiper={(swiper) => console.log(swiper)}
                 autoplay={{ delay: 7000 }}
               >
                 {
@@ -62,7 +62,8 @@ export default function Pokedex(props) {
                     return (
                       <SwiperSlide key={index} virtualIndex={index}>
                         <div className="cardSlides" key={index.toString()}>
-                          <img src={slideContent?.front_default} style={{ width: '40%', height: '40%' }} />
+                          <p className="fontPokedex" >{slideContent.name}</p>
+                          <img src={slideContent?.sprites.front_default} style={{ width: '40%', height: '40%' }} />
                         </div>
                       </SwiperSlide>
                     )
@@ -78,12 +79,10 @@ export default function Pokedex(props) {
           />
         </div>
       </div>
-      <div className="pokedexRight">
-        <div className="adornoInclinacion" />
-        <div className="pokedexRightContainer">
 
-        </div>
-      </div>
+      <PokeRight
+      
+      />
     </div>
   )
 }
@@ -145,3 +144,22 @@ function HeadreComponent() {
     </div>
   );
 };
+
+function PokeRight(props) {
+
+  const { } = props;
+
+  return (
+    <div className="pokedexRight">
+      <div className="adornoInclinacion" />
+      <div className="pokedexRightContainer">
+
+        <div className="contenTitleList" >
+
+        </div>
+
+      </div>
+    </div>
+  )
+
+}

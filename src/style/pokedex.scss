@@ -57,7 +57,7 @@
 }
 
 .pokedexRightContainer{
-    @include flexClasic( $width: 100%, $height: 100% );
+    @include flexClasic( $width: 100%, $height: 100%, $algItems: center );
     background-color: frecuent.$colorPokeder;
 }
 
@@ -184,8 +184,23 @@
 }
 
 .cardSlides{
-    @include flexClasic( $direccion: column, $width: 150px, $height: 120px, $algItems: center, $justify: center );
+    @include flexClasic( $direccion: column, $width: 170px, $height: 120px, $algItems: center, $justify: center );
     border-radius: 10px;
     background: linear-gradient(292deg, #3716e0 0%, #00c6f9 100%);
     cursor: pointer;
+}
+
+.fontPokedex{
+    color: white;
+    font-size: 10px;
+    font-family: frecuent.$fontGame;
+    margin-bottom: 10px;
+}
+
+.contenTitleList{
+    width: 80%;
+    height: 80px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: frecuent.$fontGame;
 }
