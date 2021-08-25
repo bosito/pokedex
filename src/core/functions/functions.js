@@ -39,6 +39,14 @@ export const getAllImage = async (index) => {
 
 export const spritesPkemons = (listPokeInfo) => {
     const arrayImage = listPokeInfo.map((info) => {
+        //console.log(info.sprites.versions["generation-v"]["black-white"].animated);
+        //console.log(info.types[0].type.name);
+
+        const data = {
+            sprites: info.sprites.versions["generation-v"]["black-white"].animated,
+            types : info.types
+        }; 
+
         return info.sprites.versions["generation-v"]["black-white"].animated
     });
 

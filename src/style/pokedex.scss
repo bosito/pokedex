@@ -184,7 +184,7 @@
 }
 
 .cardSlides{
-    @include flexClasic( $direccion: column, $width: 100%, $height: 100%, $algItems: center, $justify: center );
+    @include flexClasic( $direccion: column, $width: 150px, $height: 120px, $algItems: center, $justify: center );
     border-radius: 10px;
     background: linear-gradient(292deg, #3716e0 0%, #00c6f9 100%);
     cursor: pointer;

@@ -7,8 +7,8 @@ import { spritesPkemons } from '../core/functions/functions';
 import '../style/pokedex.scss';
 
 // Import Swiper styles
-import 'swiper/swiper.scss';
-import "swiper/components/autoplay/package.json"
+import 'swiper/swiper.min.css';
+import "swiper/components/autoplay/package.json";
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Virtual]);
@@ -28,6 +28,7 @@ export default function Pokedex(props) {
 
     if (listPokeInfo) {
       const arrayImage = spritesPkemons(listPokeInfo);
+      console.log(arrayImage);
       setListSprites(arrayImage);
     };
 
@@ -40,9 +41,37 @@ export default function Pokedex(props) {
 
           <HeadreComponent />
 
-          <CardsComponent
-            listSprites={listSprites}
-          />
+          <div className="contenSwiper">
+            <div className="centerSwiper">
+              <Swiper
+                slidesPerGroup={3}
+                spaceBetween={30}
+                slidesPerView={3}
+                //virtual
+                loop={true}
+                loopFillGroupWithBlank={true}
+                grabCursor={true}
+                centeredSlides={true}
+              //onSlideChange={() => console.log('slide change')}
+              //onSwiper={(swiper) => console.log(swiper)}
+                autoplay={{ delay: 7000 }}
+              >
+                {
+                  listSprites &&
+                  listSprites.map((slideContent, index) => {
+                    return (
+                      <SwiperSlide key={index} virtualIndex={index}>
+                        <div className="cardSlides" key={index.toString()}>
+                          <img src={slideContent?.front_default} style={{ width: '40%', height: '40%' }} />
+                        </div>
+                      </SwiperSlide>
+                    )
+                  })
+                }
+
+              </Swiper>
+            </div>
+          </div>
 
           <DisplayComponent
 
@@ -99,51 +128,6 @@ function DisplayComponent() {
   );
 };
 
-function CardsComponent(props) {
-
-  const { listSprites } = props;
-
-  return (
-    <div className="contenSwiper">
-      <div className="centerSwiper">
-        <Swiper
-          slidesPerView={3}
-          slidesPerGroup={3}
-          spaceBetween={5}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          grabCursor={true}
-          centeredSlides={true}
-          //onSlideChange={() => console.log('slide change')}
-          //onSwiper={(swiper) => console.log(swiper)}
-          autoplay={{ delay: 7000 }}
-          //virtual
-        >
-          {
-            listSprites &&
-            listSprites.map((slideContent, index) => {
-
-              //console.log(listSprites.length);
-              //console.log(slideContent);
-
-              return (
-                <SwiperSlide key={index} virtualIndex={index}>
-                  <div className="cardSlides" 
-                  //style={{ width: '100%', height: '100%' }}
-                  >
-                    <img src={slideContent.front_default} style={{width: '40%', height: '40%'}}/>
-                  </div>
-                </SwiperSlide>
-              )
-            })
-          }
-
-        </Swiper>
-      </div>
-    </div>
-  );
-};
-
 function HeadreComponent() {
   return (
     <div className="headerPekedex">
@@ -153,7 +137,7 @@ function HeadreComponent() {
       </div>
 
       <div className="contenSircle">
-        <div className="sircle luzRoja"/>
+        <div className="sircle luzRoja" />
         <div className="sircle luzAmarilla" />
         <div className="sircle luzVerde" />
       </div>
