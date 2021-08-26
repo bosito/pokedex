@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Navigation, Virtual } from 'swiper/core';
 import { spritesPkemons } from '../core/functions/functions';
 
+//images
+import { listImage } from '../core/data/dataImages';
 //style
 import '../style/pokedex.scss';
 
@@ -23,6 +25,7 @@ export default function Pokedex(props) {
 
   const { lisPokemons, listPokeInfo } = props;
   const [listSprites, setListSprites] = useState(null);
+  const [listTypesicons, setListTypesicons] = useState([]);
 
   useEffect(() => {
 
@@ -33,6 +36,10 @@ export default function Pokedex(props) {
     };
 
   }, [listPokeInfo]);
+
+  useEffect(() => {
+    setListTypesicons([ ...listImage])
+  }, [listImage]);
 
   return (
     <div className="PokeContainer">
@@ -81,7 +88,7 @@ export default function Pokedex(props) {
       </div>
 
       <PokeRight
-      
+        newListImage={listTypesicons}
       />
     </div>
   )
@@ -147,14 +154,45 @@ function HeadreComponent() {
 
 function PokeRight(props) {
 
-  const { } = props;
+  const { newListImage } = props;
+  const [showAcordion, setShowAcordion] = useState(null);
 
   return (
     <div className="pokedexRight">
       <div className="adornoInclinacion" />
       <div className="pokedexRightContainer">
+        <div className="buscadorPokedex" >
 
-        <div className="contenTitleList" >
+        </div>
+
+        <div className="acordionConten" >
+          <button className="conetnTitleAcordion" onClick={()=> setShowAcordion(0)} >
+            <p style={{ marginLeft: 20 }}> {"<"} Types</p>
+          </button>
+          <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
+
+          <div className="acordionList">
+            {
+              showAcordion === 0 ? (
+                newListImage &&
+                newListImage.map((iconType, index) => {
+                  return (
+                    <div style={{ width: 50, height: 50, margin: 2 }} key={index} >
+                      <img src={iconType} style={{ width: '100%', height: '100%' }} />
+                    </div>
+                  )
+                })
+              ) : showAcordion === 1 && (
+                null
+              )
+            }
+          </div>
+
+
+          <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
+          <button className="conetnTitleAcordion" >
+            <p style={{ marginLeft: 20 }} > {"<"} Genetarion</p>
+          </button>
 
         </div>
 
