@@ -54,3 +54,20 @@ export const spritesPkemons = (listPokeInfo) => {
 
     return arrayImage;
 };
+
+export const getListGenerations = async () => {
+    try {
+        const response = axios.get("https://pokeapi.co/api/v2/generation");
+
+        /**
+         * no sabia que se podia hacer esto ???? quede O.O
+         */
+        
+        return (await response).data.results;
+
+    } catch (error) {
+
+        console.error(error);
+
+    };
+}

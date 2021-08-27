@@ -151,6 +151,7 @@
     @include flexClasic( $direccion: column, $width: 100%, $height: 100px, $justify: flex-end );
 }
 
+.botonTypes,
 .boton{
     @include flexClasic( $direccion: column, $width: 50px, $height: 50px, $justify: center, $algItems: center );
     cursor: pointer;
@@ -204,6 +205,8 @@
     border-style: solid;
     border-color: #201f1f;
     background: linear-gradient(48deg, #191919 3%, #8c8c8c 100%);
+    color: white;
+    font-family: frecuent.$fontGame;
 }
 
 .fontPokedex{
@@ -212,7 +215,6 @@
     font-family: frecuent.$fontGame;
     margin-bottom: 10px;
 }
-
 
 .acordionConten{
     @include flexClasic( $direccion: column, $width: 80%, $height: auto, $algItems: center, $justify: flex-start );
@@ -230,7 +232,20 @@
 }
 
 .acordionList{
-    transition: 5s;
+    transition: 2s;
     @include flexClasic( $direccion: row, $width: 100%, $height: auto, $justify: center );
     flex-wrap: wrap;
+}
+
+.botonTypes{
+    background-color: none;
+    filter: none;
+}
+
+.botongeneration{
+    @include flexClasic( $direccion: column, $width: 100%, $height: 30px, $algItems: center, $justify: center );
+    cursor: pointer;
+    font-family: frecuent.$fontGame;
+    color: black;
+    margin: 2px;
 }

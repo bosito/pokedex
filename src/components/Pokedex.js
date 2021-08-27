@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Navigation, Virtual } from 'swiper/core';
+import SwiperCore, { Autoplay, Navigation } from 'swiper/core';
 import { spritesPkemons } from '../core/functions/functions';
 
 //images
@@ -13,7 +13,7 @@ import 'swiper/swiper.min.css';
 import "swiper/components/autoplay/package.json";
 
 // install Swiper modules
-SwiperCore.use([Autoplay, Navigation, Virtual]);
+SwiperCore.use([Autoplay, Navigation]);
 
 /**
  * @returns nota para el yo del futuro si estas usando la libreria de swiper
@@ -23,7 +23,7 @@ SwiperCore.use([Autoplay, Navigation, Virtual]);
 
 export default function Pokedex(props) {
 
-  const { lisPokemons, listPokeInfo } = props;
+  const { lisPokemons, listPokeInfo, listGeneration } = props;
   const [listSprites, setListSprites] = useState(null);
   const [listTypesicons, setListTypesicons] = useState([]);
 
@@ -31,7 +31,6 @@ export default function Pokedex(props) {
 
     if (listPokeInfo) {
       const arrayImage = spritesPkemons(listPokeInfo);
-      //console.log(arrayImage);
       setListSprites(arrayImage);
     };
 
@@ -54,7 +53,6 @@ export default function Pokedex(props) {
                 slidesPerGroup={3}
                 spaceBetween={20}
                 slidesPerView={3}
-                //virtual
                 loop={true}
                 loopFillGroupWithBlank={true}
                 grabCursor={true}
@@ -89,6 +87,7 @@ export default function Pokedex(props) {
 
       <PokeRight
         newListImage={listTypesicons}
+        listGeneration={listGeneration}
       />
     </div>
   )
@@ -154,19 +153,19 @@ function HeadreComponent() {
 
 function PokeRight(props) {
 
-  const { newListImage } = props;
+  const { newListImage, listGeneration } = props;
   const [showAcordion, setShowAcordion] = useState(null);
+
+  const hendelAcordion = (value) => setShowAcordion((state)=> value !== state ? state = value : null )
 
   return (
     <div className="pokedexRight">
       <div className="adornoInclinacion" />
       <div className="pokedexRightContainer">
-        <div className="buscadorPokedex" >
-
-        </div>
+        <input className="buscadorPokedex" type="text"/>
 
         <div className="acordionConten" >
-          <button className="conetnTitleAcordion" onClick={()=> setShowAcordion(0)} >
+          <button className="conetnTitleAcordion" onClick={()=> hendelAcordion(0)} >
             <p style={{ marginLeft: 20 }}> {"<"} Types</p>
           </button>
           <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
@@ -177,20 +176,28 @@ function PokeRight(props) {
                 newListImage &&
                 newListImage.map((iconType, index) => {
                   return (
-                    <div style={{ width: 50, height: 50, margin: 2 }} key={index} >
+                    <button className="botonTypes" style={{ width: 50, height: 50, margin: 2, boxShadow: 'none' }} key={index} >
                       <img src={iconType} style={{ width: '100%', height: '100%' }} />
-                    </div>
+                    </button>
                   )
                 })
               ) : showAcordion === 1 && (
-                null
+                listGeneration &&
+                listGeneration.map((generation,index)=>{
+                  console.log(generation);
+                  return(
+                    <button className="botongeneration" style={{ backgroundColor: 'transparent', border: 0 }} key={index} >
+                      <p className="fontPokedex" style={{color: 'black'}} >{generation.name}</p>
+                    </button>
+                  )
+                })
               )
             }
           </div>
 
 
           <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
-          <button className="conetnTitleAcordion" >
+          <button className="conetnTitleAcordion" onClick={()=> hendelAcordion(1)} >
             <p style={{ marginLeft: 20 }} > {"<"} Genetarion</p>
           </button>
 

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getsPokemonts, getAllImage, extraerFirtIndexPokemon } from '../functions/functions';
+import { getsPokemonts, getAllImage, extraerFirtIndexPokemon, getListGenerations } from '../functions/functions';
 
 const CreateAppContext = createContext();
 
@@ -7,6 +7,7 @@ export default function GlobalPrivider({ children }) {
 
     const [lisPokemons, setLisPokemons] = useState(null);
     const [listPokeInfo, setListPokeInfo] = useState(null);
+    const [listGeneration, setListGeneration] = useState(null);
 
     useEffect(() => {
 
@@ -35,10 +36,22 @@ export default function GlobalPrivider({ children }) {
 
     }, [lisPokemons]);
 
+    useEffect(() => {
+        
+        (async () => {
+
+            const response = await getListGenerations();
+            setListGeneration(response);
+
+        })();
+
+    }, []);
+
 
     const context = {
         lisPokemons,
-        listPokeInfo
+        listPokeInfo,
+        listGeneration
     };
 
     return (

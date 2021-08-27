@@ -10,7 +10,7 @@ import '../style/indexStyles.scss';
 
 export default function PokedexScreen() {
 
-  const { lisPokemons, listPokeInfo } = useContexApp();
+  const { lisPokemons, listPokeInfo, listGeneration } = useContexApp();
 
   return (
     <ViewContainer>
@@ -18,6 +18,7 @@ export default function PokedexScreen() {
         <Pokedex
           listPokeInfo={listPokeInfo}
           lisPokemons={lisPokemons}
+          listGeneration={listGeneration}
         />
       </div>
     </ViewContainer>
