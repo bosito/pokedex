@@ -37,7 +37,7 @@ export default function Pokedex(props) {
   }, [listPokeInfo]);
 
   useEffect(() => {
-    setListTypesicons([ ...listImage])
+    setListTypesicons([...listImage])
   }, [listImage]);
 
   return (
@@ -156,16 +156,16 @@ function PokeRight(props) {
   const { newListImage, listGeneration } = props;
   const [showAcordion, setShowAcordion] = useState(null);
 
-  const hendelAcordion = (value) => setShowAcordion((state)=> value !== state ? state = value : null )
+  const hendelAcordion = (value) => setShowAcordion((state) => value !== state ? state = value : null)
 
   return (
     <div className="pokedexRight">
       <div className="adornoInclinacion" />
       <div className="pokedexRightContainer">
-        <input className="buscadorPokedex" type="text"/>
+        <input className="buscadorPokedex" type="text" />
 
         <div className="acordionConten" >
-          <button className="conetnTitleAcordion" onClick={()=> hendelAcordion(0)} >
+          <button className="conetnTitleAcordion" onClick={() => hendelAcordion(0)} >
             <p style={{ marginLeft: 20 }}> {"<"} Types</p>
           </button>
           <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
@@ -183,11 +183,11 @@ function PokeRight(props) {
                 })
               ) : showAcordion === 1 && (
                 listGeneration &&
-                listGeneration.map((generation,index)=>{
+                listGeneration.map((generation, index) => {
                   console.log(generation);
-                  return(
+                  return (
                     <button className="botongeneration" style={{ backgroundColor: 'transparent', border: 0 }} key={index} >
-                      <p className="fontPokedex" style={{color: 'black'}} >{generation.name}</p>
+                      <p className="fontPokedex" style={{ color: 'black' }} >{generation.name}</p>
                     </button>
                   )
                 })
@@ -195,9 +195,8 @@ function PokeRight(props) {
             }
           </div>
 
-
           <div style={{ width: '90%', height: 0.5, backgroundColor: 'gray' }} />
-          <button className="conetnTitleAcordion" onClick={()=> hendelAcordion(1)} >
+          <button className="conetnTitleAcordion" onClick={() => hendelAcordion(1)} >
             <p style={{ marginLeft: 20 }} > {"<"} Genetarion</p>
           </button>
 
@@ -207,4 +206,4 @@ function PokeRight(props) {
     </div>
   )
 
-}
+};
